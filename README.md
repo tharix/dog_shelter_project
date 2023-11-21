@@ -1,8 +1,8 @@
-# Apress Source Code
+# Canine Haven Reservation System
 
 This repository accompanies [*Learn PHP 8*](https://www.apress.com/9781484262399) by Steve Prettyman (Apress, 2020).
 
-! cover
+## Cover
 
 ![Cover image](../imgs/../dog_shelter_website/imgs/9781484262399.jpg)
 
@@ -14,5 +14,4 @@ This release v1.0 corresponds to the code in the published book.
 
 ## Contributions
 
-See the file Contributing.md for more information on how you can
-contribute to this repository.
+See the file Contributing.md for more information on how you can contribute to this repository.
