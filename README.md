@@ -4,7 +4,7 @@ This repository accompanies [*Learn PHP 8*](https://www.apress.com/9781484262399
 
 ## Cover
 
-![Cover image](https://github.com/tharix/dog_shelter_project/blob/main/imgs/9781484262399.jpgg)
+![Cover image](https://github.com/tharix/dog_shelter_project/blob/main/imgs/9781484262399.jpg)
 
 Download the files as a zip using the green button, or clone the repository to your machine using Git.
 
