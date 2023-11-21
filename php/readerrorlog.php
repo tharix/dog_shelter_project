@@ -1,0 +1,89 @@
+<?php
+session_start();
+
+function deleteRecord($recordNumber, &$row_Count, &$error_Array)
+{
+	for ($J=$recordNumber; $J < $row_Count - 1; $J++)
+ {
+		for($I=0; $I < 3; $I++)
+  {
+   $error_Array[$J][$I] = $error_Array[$J + 1][$I];
+		}
+ }
+ unset($error_Array[$row_Count]);
+ $row_Count--;
+}
+
+function saveChanges($row_Count,$error_Array,$log_File)
+{
+	$logFile = fopen($log_File, "w");
+	for($I=0; $I < $row_Count; $I++)
+	{
+  $writeString = $error_Array[$I][0] . " | " . $error_Array[$I][1] . " | " . $error_Array[$I][2];
+  fwrite($logFile, $writeString);
+ }
+	fclose($logFile);
+}
+
+function displayRecords($row_Count, $error_Array)
+{
+ echo "<html><head><title>Canine Haven Shelter Reservation System</title>";
+ echo "<link href='../css/ajaxdemo.css' rel='stylesheet'>";
+ echo "<style> table { border: 2px solid #5c744d;}";
+ echo "img { height: 100px; width: 140px; } </style>";
+ echo "</head><body>";
+ echo "<div id='wrapper'><div id='header'><h1><img src='../imgs/canine.jpg'> Canine Haven Shelter Reservation System</h1></div><div id='content'>";
+ echo "<table>";
+ echo "<caption>Log File: " . ERROR_LOG . "</caption>";
+ echo "<tr><th></th><th>Date/Time</th><th>Error Type</th><th>Error Message</th></tr><tr>";
+
+ for ($J=$row_Count; $J >= 0; $J--)
+ {
+		echo "<td><a href='readlogfile.php?rn=$J'>Delete</a></td>";
+		for($I=0; $I < 3; $I++)
+  {
+   echo "<td> " . $error_Array[$J][$I] . " </td> ";
+		}
+  echo "</tr>";
+ }
+ 
+ echo "</table>";
+ echo "</div><div id='footer'>Copyright &copy; 2023 T-Harix Tech - Muhammed Abubakar</div></div>";
+ echo "</body></html>";
+}
+
+const ERROR_LOG = "./Logs/Errors.log";
+
+if ((!isset($_SESSION['username'])) || (!isset($_SESSION['password'])))
+{
+ echo "<html><head><title>Canine Haven Shelter Reservation System</title>";
+ echo "<link href='../css/ajaxdemo.css' rel='stylesheet'><style type='text/css'>img { height: 100px; width: 140px; }</style></head><body>";
+ echo "<div id='wrapper'><div id='header'><h1><img src='../imgs/canine.jpg'>Canine Haven Shelter Reservation System</h1></div>";
+ echo "<div id='content'>";
+ echo "You must login to access the Canine Haven Shelter Reservation System";
+ echo "<p>";
+ echo "<a href='./login.php'>Login</a> | <a href='registration.php'>Create an account</a>";
+ echo "</p>";
+ echo "</div><div id='footer'>Copyright &copy; 2023 T-Harix Tech - Muhammed Abubakar</div></div>";
+ echo "</body></html>";
+}
+else
+{
+ $logFile = fopen(ERROR_LOG, "r");
+ $row_Count = 0;
+  while(!feof($logFile))
+ {
+  $error_Array[$row_Count] = explode(' | ', fgets($logFile));
+  $row_Count++;
+ }
+ $row_Count--;
+ fclose($logFile);
+ 
+ if(isset($_GET['rn']))
+ {
+  deleteRecord($_GET['rn'], $row_Count, $error_Array);
+  saveChanges($row_Count, $error_Array, ERROR_LOG);
+ }
+ displayRecords($row_Count,$error_Array);
+}
+?>

@@ -1,0 +1,56 @@
+body
+{
+  background-image: url("../imgs/canine.jpg");
+  background-size:cover;
+  background-color: #000000;
+  font-family: Arial, Verdana, sans-serif;
+}
+#wrapper
+{
+  margin: 0 auto;
+  width: 85%;
+  min-width: 800px;
+  background-color: #cc0000;
+  color: #000066;
+  float: top;
+}
+#header
+{
+  /*background-image: url("../imgs/canine.jpg");*/
+  background-color: #0180d4;
+  color: #fd5715;
+  font-size: 125%;
+  text-align: center;
+  padding: 20px 20px 20px 20px;
+  background-repeat: no-repeat;
+}
+h1
+{
+  margin-bottom: 10px;
+}
+#content
+{
+  background-color: #ffffff;
+  color: #ce5007;
+  padding: 10px 20px;
+  overflow: auto;
+}
+#footer
+{
+  font-size: 80%;
+  text-align: center;
+  padding: 5px;
+  background-color: #0180d4;
+  color: #ffffff;
+  clear: both;
+}
+h2
+{
+  color: #000000;
+  font-family: Arial, sans-serif;
+}
+#floatright
+{
+  float: right;
+  margin: 10px;
+}
