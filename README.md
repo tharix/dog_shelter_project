@@ -10,7 +10,7 @@ Download the files as a zip using the green button, or clone the repository to y
 
 ## Releases
 
-This release v1.0 corresponds to the code in the published book.
+This release v1.0 corresponds to the code in the published book with additional codes.
 
 ## Contributions
 
